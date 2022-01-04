@@ -20,6 +20,22 @@ import {
   CBreadcrumbItem
 } from './packages/c-breadcrumb/index'
 import CBacktop from './packages/c-backtop/index.js'
+import {
+  CForm,
+  CFormItem
+} from './packages/c-form/index'
+import {
+  Page,
+  PageHeader,
+  PageContent,
+  PageContentItem
+} from './packages/page/index'
+import CSpace from './packages/c-space/index.js'
+import {
+  CCollapse,
+  CCollapseItem
+} from './packages/c-collapse/index'
+import Previewer from './packages/previewer'
 
 const components = [
   CButton,
@@ -39,7 +55,17 @@ const components = [
   CDivider,
   CBreadcrumb,
   CBreadcrumbItem,
-  CBacktop
+  CBacktop,
+  CForm,
+  CFormItem,
+  Page,
+  PageHeader,
+  PageContent,
+  PageContentItem,
+  CSpace,
+  CCollapse,
+  CCollapseItem,
+  Previewer
 ]
 
 const install = function (Vue) {

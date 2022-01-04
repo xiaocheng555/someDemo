@@ -63,7 +63,36 @@ export default {
         {
           name: 'backtop',
           link: '/backtop'
-        }
+        },
+        {
+          name: 'form',
+          link: '/form'
+        },
+        {
+          name: 'demo',
+          link: '/demo'
+        },
+        {
+          name: 'DemoPage',
+          link: '/DemoPage'
+        },
+        {
+          name: 'Space',
+          link: '/Space'
+        },
+        {
+          name: 'Collapse',
+          link: '/Collapse'
+        },
+        {
+          name: 'Poper',
+          link: '/Poper'
+        },
+        {
+          name: 'Preview',
+          link: '/Preview'
+        },
+
       ]
     }
   },

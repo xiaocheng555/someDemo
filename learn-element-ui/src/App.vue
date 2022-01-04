@@ -3,7 +3,7 @@
     <!-- <h3 :title="title" :class="[title]">{{title}}</h3> -->
     <!-- <VueDebugger></VueDebugger> -->
     <!-- <Demo1></Demo1> -->
-    <Demo2
+    <!-- <Demo2
       class="demo2"
       style="color: red;"
       title="demo2"
@@ -12,13 +12,13 @@
       :class="`demo_count_${count}`"
       :style="{ minHeight: count + 'px' }"
       @increase="handleIncrease">
-    </Demo2>
+    </Demo2> -->
       <!-- @click.native="handleClick" -->
     <!-- <div>
       <button @click="count = count + 1">increase</button>
       count: {{ count }}
     </div> -->
-    <!-- <router-view/> -->
+    <router-view />
   </div>
 </template>
 

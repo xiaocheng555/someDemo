@@ -1,5 +1,5 @@
-// import Vue from 'vue'
-import Vue from '../../../../vue2.x/dist/vue'
+import Vue from 'vue'
+// import Vue from '../../../../vue2.x/dist/vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 
@@ -70,6 +70,41 @@ const routes = [
     path: '/backtop',
     name: 'backtop',
     component: () => import(/* webpackChunkName: "backtop" */ '../views/Backtop.vue')
+  },
+  {
+    path: '/form',
+    name: 'form',
+    component: () => import(/* webpackChunkName: "form" */ '../views/Form.vue')
+  },
+  {
+    path: '/demo',
+    name: 'demo',
+    component: () => import(/* webpackChunkName: "demo" */ '../views/Demo.vue')
+  },
+  {
+    path: '/DemoPage',
+    name: 'DemoPage',
+    component: () => import(/* webpackChunkName: "DemoPage" */ '../views/DemoPage.vue')
+  },
+  {
+    path: '/Space',
+    name: 'Space',
+    component: () => import(/* webpackChunkName: "Space" */ '../views/Space.vue')
+  },
+  {
+    path: '/Collapse',
+    name: 'Collapse',
+    component: () => import(/* webpackChunkName: "Collapse" */ '../views/Collapse.vue')
+  },
+  {
+    path: '/Poper',
+    name: 'Poper',
+    component: () => import(/* webpackChunkName: "Poper" */ '../views/Poper.vue')
+  },
+  {
+    path: '/Preview',
+    name: 'Preview',
+    component: () => import(/* webpackChunkName: "Preview" */ '../views/Preview.vue')
   }
 ]
 

@@ -1,13 +1,3 @@
-/*
- * File: index.vue
- * File Created: 2020-11-23 3:24:32 pm
- * Author: zhanghc11 (huancheng.zhang@meicloud.com)
- * Copyright: 2017 - 2020 Copyright (c), 深圳美云智数科技有限公司
- * -----
- * Last Modified: 2020-11-23 3:24:32 pm
- * Modified By: zhanghc11 (huancheng.zhang@meicloud.com>)
- */
-
 <template>
   <transition name="el-fade-in">
     <div
