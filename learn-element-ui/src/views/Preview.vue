@@ -49,6 +49,21 @@ export default {
         },
         {
           src:'https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/169beda20a9f431293151cff12314b65~tplv-k3u1fbpfcp-watermark.awebp?'
+        },
+        {
+          src: 'https://oss-cn-uat.midea.com:17443/userDownload/D4BE612D71A34354AC652BF6B5E82CA6/oss-uat/UOM/image/2f6f4695-347d-46f2-80c5-b764cf00c5a1.png'
+        },
+        {
+          src: 'https://oss-cn-uat.midea.com:17443/userDownload/D4BE612D71A34354AC652BF6B5E82CA6/oss-uat/UOM/image/2f6f4695-347d-46f2-80c5-b764cf00c5a1.png'
+        },
+        {
+          src: 'https://oss-cn-uat.midea.com:17443/userDownload/D4BE612D71A34354AC652BF6B5E82CA6/oss-uat/UOM/image/2f6f4695-347d-46f2-80c5-b764cf00c5a1.png'
+        },
+        {
+          src: 'https://oss-cn-uat.midea.com:17443/userDownload/D4BE612D71A34354AC652BF6B5E82CA6/oss-uat/UOM/image/2f6f4695-347d-46f2-80c5-b764cf00c5a1.png'
+        },
+        {
+          src: 'https://oss-cn-uat.midea.com:17443/userDownload/D4BE612D71A34354AC652BF6B5E82CA6/oss-uat/UOM/image/2f6f4695-347d-46f2-80c5-b764cf00c5a1.png'
         }
       ],
       options: {

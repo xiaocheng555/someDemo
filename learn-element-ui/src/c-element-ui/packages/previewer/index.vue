@@ -122,14 +122,16 @@ export default {
       this.doInit(index)
     },
     doInit (index) {
-      let options = Object.assign({
-        history: false,
-        shareEl: false,
-        tapToClose: true,
-        index: index,
-        showHideOpacity: true,
-        hideAnimationDuration: 200,
-        errorMsg: '<div class="pswp__error-msg">图片加载失败</div>'
+      const options = Object.assign({
+        fullscreenEl: false, // 全屏放大按钮
+        history: true, // 打开图片后添加历史记录
+        tapToClose: false, // 点击则关闭
+        shareEl: false, // 是否有分享按钮
+        index: index, // 当前图片索引
+        focus: false, // 是否聚焦
+        showHideOpacity: true, // 图片关闭时带不透明度
+        maxSpreadZoom: 1.2, // 手势最大放大倍数
+        errorMsg: '<div class="pswp__error-msg">图片加载失败</div>' // 图片加载失败提示
       }, this.options)
       options.getThumbBoundsFn = this.setThumbBoundsFn(options)
       this.photoswipe = new PhotoSwipe(this.$el, UI, this.imgs, options)
@@ -152,17 +154,64 @@ export default {
         }
       })
       this.photoswipe.init()
+
       this.photoswipe.listen('close', () => {
         this.$emit('on-close')
         this.photoswipe = null
       })
+
       this.photoswipe.listen('afterChange', (a, b) => {
         const currentIndex = this.photoswipe.getCurrentIndex()
+        this.fillLongImg(true)
         this.setLoading(currentIndex)
         this.$emit('on-index-change', {
           currentIndex: currentIndex
         })
       })
+
+      this.photoswipe.listen('initialZoomIn', () => {
+        this.fillLongImg(true)
+      })
+
+      // 查看长图时，支持滚动图片而不关闭弹窗
+      this.photoswipe.listen('preventDragEvent', (e, isDown, preventObj) => {
+        const item = this.photoswipe.currItem
+        if (item.longImg) {
+          this.photoswipe.options.closeOnVerticalDrag = false
+          // 往下拖懂图片释放时，且图片距离顶部超过设定范围，则手动关闭弹窗
+          const rect = e.target.getBoundingClientRect()
+          if (!isDown && rect.top > 40 && rect.top < 250) {
+            this.photoswipe.close()
+          }
+        } else {
+          this.photoswipe.options.closeOnVerticalDrag = true
+        }
+      })
+    },
+    // 长图片填充屏幕
+    fillLongImg (triggerResize) {
+      if (!this.photoswipe) return
+      if (!this.longImgFilled) return
+
+      const item = this.photoswipe.currItem
+      if (item && item.w && item.h) {
+        const isLongImg = item.h / item.w > 3 // 是否长图
+        if (isLongImg) {
+          const zoomLevel = this.photoswipe.viewportSize.x / item.w
+          item.initialZoomLevel = zoomLevel
+          item.initialPosition = {
+            x: 0,
+            y: 0
+          }
+          // 手动缩放使图片填充屏幕
+          if (triggerResize) {
+            this.photoswipe.applyZoomPan(item.initialZoomLevel, 0, 0)
+          }
+          item.longImg = true
+        } else {
+          item.longImg = false
+        }
+      }
     },
     // 设置loading
     setLoading (index) {
@@ -192,7 +241,6 @@ export default {
       if (typeof options.thumbBoundsEl === 'string') {
         return (index) => {
           let thumbnail = (document.querySelectorAll(options.thumbBoundsEl) || {})[index]
-          console.log(thumbnail, 'thumbnail')
           if (thumbnail) {
             let pageYScroll = window.pageYOffset || document.documentElement.scrollTop
             let rect = thumbnail.getBoundingClientRect()
@@ -238,6 +286,10 @@ export default {
     sizeCalcProp: { // 获取图片尺寸的图片地址属性
       type: String,
       default: 'msrc'
+    },
+    longImgFilled: { // 填充长图
+      type: Boolean,
+      default: true
     },
     options: {
       type: Object,

@@ -27,6 +27,8 @@ import VueDebugger from './vue-debugger'
 import Demo1 from './vue-debugger/demo1'
 import Demo2 from './vue-debugger/demo2'
 
+let once = true
+
 export default {
   name: 'app',
   components: {
@@ -48,6 +50,22 @@ export default {
       // debugger
       console.log(this, '==', count)
       console.log(this.title, 'title')
+    }
+  },
+  watch: {
+    '$route': {
+      immediate: true,
+      handler (route) {
+        if (once) {
+          const reg = /&gid=(\d+)&pid=((\d+))/
+          if (reg.test(route.path)) {
+            const newPath = route.path.replace(reg, '')
+            this.$router.replace({
+              path: newPath
+            })
+          }
+        }
+      }
     }
   },
   created () {
