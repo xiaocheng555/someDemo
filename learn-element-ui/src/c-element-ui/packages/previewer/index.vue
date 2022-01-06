@@ -161,6 +161,7 @@ export default {
       })
 
       this.photoswipe.listen('afterChange', (a, b) => {
+        if (!this.photoswipe) return
         const currentIndex = this.photoswipe.getCurrentIndex()
         this.fillLongImg(true)
         this.setLoading(currentIndex)
@@ -175,7 +176,8 @@ export default {
 
       // 查看长图时，支持滚动图片而不关闭弹窗
       this.photoswipe.listen('preventDragEvent', (e, isDown, preventObj) => {
-        const item = this.photoswipe.currItem
+        const index = this.photoswipe.getCurrentIndex()
+        const item = this.imgs[index]
         if (item.longImg) {
           this.photoswipe.options.closeOnVerticalDrag = false
           // 往下拖懂图片释放时，且图片距离顶部超过设定范围，则手动关闭弹窗
@@ -193,7 +195,8 @@ export default {
       if (!this.photoswipe) return
       if (!this.longImgFilled) return
 
-      const item = this.photoswipe.currItem
+      const index = this.photoswipe.getCurrentIndex()
+      const item = this.imgs[index]
       if (item && item.w && item.h) {
         const isLongImg = item.h / item.w > 3 // 是否长图
         if (isLongImg) {
